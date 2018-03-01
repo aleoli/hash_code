@@ -21,9 +21,5 @@ int main(int argc, char *argv[]) {
     
     Output *output = new Output(map->get_cars());
     
-    delete output;
-    delete map;
-    delete reader;
-    
     return 0;
 }

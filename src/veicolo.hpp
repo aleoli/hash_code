@@ -19,7 +19,7 @@ namespace hs {
 		void next_step();
 		Point get_position() const;
 		vector<int> get_completed_rides() const;
-		int getId() const;
+		int getId();
 		
 	private:
 		void move(Direzione d);

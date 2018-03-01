@@ -21,7 +21,7 @@ Veicolo::Veicolo(int id, Ride ride, _Map *map) {
 	this->_is_free = false;
 }
 
-int Veicolo::getId() const {
+int Veicolo::getId() {
 	return this->id;
 }
 
