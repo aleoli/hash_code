@@ -11,7 +11,30 @@ using std::string;
 
 namespace hs {
     
-    //class Nome;
+    typedef struct {
+    	int rows;
+    	int cols;
+    	int n_v;
+    	int rides;
+    	int bonus;
+    	int steps;
+    } MapConfig;
+    
+    typedef struct {
+    	int x;
+    	int y;
+    } Point;
+    
+    typedef struct {
+    	int id;
+    	Point start;
+    	Point end;
+    	int st_t;
+    	int end_t;
+    } Ride;
+    
+    class Veicolo;
+    class Map;
     
 }
 

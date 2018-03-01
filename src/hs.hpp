@@ -1,6 +1,7 @@
 #ifndef lisa_hpp
 #define lisa_hpp
 
-//#nome.hpp
+#include "veicolo.hpp"
+#include "map.hpp"
 
 #endif
