@@ -34,7 +34,7 @@ namespace hs {
     } Ride;
     
     typedef enum {
-    	UP, DOWN, LEFT, RIGHT
+    	UP, DOWN, LEFT, RIGHT, NONE
     } Direzione;
     
     class Veicolo;

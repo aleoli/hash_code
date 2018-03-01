@@ -4,21 +4,29 @@
 #include "dependencies.hpp"
 
 using hs::Point;
+using hs::_Map;
 
 namespace hs {
 
 	class Veicolo {
 	
 	public:
-		Veicolo();
-		Veicolo(Ride ride);
+		Veicolo(int id, _Map *map);
+		Veicolo(int id, Ride ride, _Map *map);
 		
 		void set_ride(Ride ride);
-		bool is_free();
+		bool is_free() const;
 		void next_step();
-		Point get_position();
+		Point get_position() const;
+		vector<int> get_completed_rides() const;
+		int getId() const;
 		
 	private:
+		void move(Direzione d);
+		void ride_finished();
+		
+		int id;
+		_Map *map;
 		vector<int> completed_rides;
 		Point position;
 		Ride current_ride;
