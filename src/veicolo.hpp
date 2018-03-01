@@ -9,8 +9,17 @@ namespace hs {
 	
 	public:
 		Veicolo();
+		Veicolo(Ride ride);
+		
+		bool is_free();
+		void next_step();
+		Point get_position();
 		
 	private:
+		vector<int> completed_rides;
+		Point position;
+		Ride current_ride;
+		bool _is_free;
 	
 	};
 
