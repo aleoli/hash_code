@@ -33,6 +33,10 @@ namespace hs {
     	int end_t;
     } Ride;
     
+    typedef enum {
+    	UP, DOWN, LEFT, RIGHT
+    } Direzione;
+    
     class Veicolo;
     class _Map;
     class Reader;
