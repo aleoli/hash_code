@@ -1,5 +1,7 @@
-#ifndef dependencies_hpp
-#define dependencies_hpp
+#ifndef reader_hpp
+#define reader_hpp
+
+#include "dependencies.hpp"
 
 #include <iostream>
 #include <vector>
@@ -9,14 +11,22 @@ using std::endl;
 using std::vector;
 using std::string;
 
-class Reader{
+using hs::Point;
+using hs::MapConfig;
+using hs::Ride;
+
+namespace hs {
+	
+	class Reader{
     private:
-    Dependencies._MapConfig mMap;
-    vector<Dependencies.Ride> mRides;
+    MapConfig mMap;
+    vector<Ride> mRides;
     public:
     Reader(string);
-    Dependencies._MapConfig GetMap();
-    vector<Dependencies.Ride> GetRides();
-};
+    MapConfig GetMap();
+    vector<Ride> GetRides();
+	};
+	
+}
 
 #endif

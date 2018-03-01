@@ -1,11 +1,11 @@
 #include "reader.hpp"
 
-using ns::Reader;
+using hs::Reader;
 
 Reader::Reader(string file_name){
     int n_row,n_col,n_vei,n_rid,n_bon,n_step;
     int** vec;
-    FILE* f=fopen(file_name,"r");
+    FILE* f=fopen(file_name.c_str(),"r");
     
     fscanf(f,"%d %d %d %d %d %d",&n_row,&n_col,&n_vei,&n_rid,&n_bon,&n_step);
     
@@ -24,10 +24,10 @@ Reader::Reader(string file_name){
     
     for(int i=0;i<n_rid;i++){
 
-        Dependencies.Ride tmp=(Ride*)malloc(sizeof(Dependencies.Ride));
+        Ride tmp;//=(Ride*)malloc(sizeof(Ride));
         tmp.id=i;
-        Dependencies.Point tmp_start=(Point*)malloc(sizeof(Dependencies.Point));
-        Dependencies.Point tmp_end=(Point*)malloc(sizeof(Dependencies.Point));
+        Point tmp_start;//=(Point*)malloc(sizeof(Point));
+        Point tmp_end;//=(Point*)malloc(sizeof(Point));
         tmp_start.x=vec[i][0];
         tmp_start.y=vec[i][1];
         tmp.start=tmp_start;
@@ -41,6 +41,6 @@ Reader::Reader(string file_name){
     
 }
 
-Dependencies.MapConfig GetMap(){return mMap}
+MapConfig Reader::GetMap(){return this->mMap;}
 
-vector<Dependencies.Ride> GetRides(){return mRides}
+vector<Ride> Reader::GetRides(){return this->mRides;}
