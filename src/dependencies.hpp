@@ -41,6 +41,7 @@ namespace hs {
     class _Map;
     class Reader;
     class Direction;
+    class Output;
     
 }
 

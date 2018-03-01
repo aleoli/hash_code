@@ -16,6 +16,7 @@ namespace hs {
 	public:
 		_Map(MapConfig conf, vector<Ride> rides);
 		
+		vector<Veicolo *> get_cars() const;
 		vector<Point> get_points(Point exclude);
 		int get_l() const;
 		int get_a() const;

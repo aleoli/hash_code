@@ -5,5 +5,6 @@
 #include "map.hpp"
 #include "reader.hpp"
 #include "direction.hpp"
+#include "output.hpp"
 
 #endif

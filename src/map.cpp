@@ -13,6 +13,7 @@ _Map::_Map(MapConfig conf, vector<Ride> rides) {
 			this->veicoli.push_back(new Veicolo(a, ride, this));
 		}
 	}
+	this->next_step();
 }
 
 vector<Point> _Map::get_points(Point exclude) {
