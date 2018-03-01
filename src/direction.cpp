@@ -62,6 +62,6 @@ Direction::Direction(Point a,Point b,vector<Point> pos_occ,int l,int h){
     
 }
 
-Direzione GetDirection(){
+Direzione Direction::GetDirection(){
     return this->mDir;
 }
