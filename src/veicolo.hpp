@@ -3,6 +3,8 @@
 
 #include "dependencies.hpp"
 
+using hs::Point;
+
 namespace hs {
 
 	class Veicolo {
@@ -11,6 +13,7 @@ namespace hs {
 		Veicolo();
 		Veicolo(Ride ride);
 		
+		void set_ride(Ride ride);
 		bool is_free();
 		void next_step();
 		Point get_position();

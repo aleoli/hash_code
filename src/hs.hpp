@@ -3,5 +3,6 @@
 
 #include "veicolo.hpp"
 #include "map.hpp"
+#include "reader.hpp"
 
 #endif

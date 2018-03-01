@@ -34,7 +34,8 @@ namespace hs {
     } Ride;
     
     class Veicolo;
-    class Map;
+    class _Map;
+    class Reader;
     
 }
 

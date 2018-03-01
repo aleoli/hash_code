@@ -1,5 +1,5 @@
 #include "veicolo.hpp"
-using ns::Veicolo;
+using hs::Veicolo;
 
 Veicolo::Veicolo() {
 	this->_is_free = true;
@@ -12,7 +12,7 @@ Veicolo::Veicolo(Ride ride) {
 }
 
 bool Veicolo::is_free() {
-	return this->_is_free
+	return this->_is_free;
 }
 
 void Veicolo::next_step() {
@@ -21,4 +21,8 @@ void Veicolo::next_step() {
 
 Point Veicolo::get_position() {
 	return this->position;
+}
+
+void Veicolo::set_ride(Ride ride) {
+	// TODO
 }

@@ -1,15 +1,20 @@
 #ifndef map_hpp
 #define map_hpp
 
-#include "dependencise.hpp"
+#include "dependencies.hpp"
 #include "veicolo.hpp"
 
-namespace {
+using hs::MapConfig;
+using hs::Ride;
+using hs::Point;
+using hs::Veicolo;
 
-	class Map {
+namespace hs {
+
+	class _Map {
 	
 	public:
-		Map(MapConfig conf, vector<Ride> rides);
+		_Map(MapConfig conf, vector<Ride> rides);
 		
 	private:
 		void next_step();
@@ -23,7 +28,7 @@ namespace {
 		vector<Veicolo *> veicoli;
 		int step;
 	
-	}
+	};
 
 }
 
