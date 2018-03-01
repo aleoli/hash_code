@@ -10,12 +10,13 @@ using std::vector;
 using std::string;
 
 class Reader{
-    Dependencies.MapConfig mMap;
+    private:
+    Dependencies._MapConfig mMap;
     vector<Dependencies.Ride> mRides;
     public:
     Reader(string);
-    Dependencies.MapConfig GetMap()
-    vector<Dependencies.Ride> GetRides()
+    Dependencies._MapConfig GetMap();
+    vector<Dependencies.Ride> GetRides();
 };
 
 #endif
