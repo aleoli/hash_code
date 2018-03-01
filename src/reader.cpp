@@ -9,9 +9,9 @@ Reader::Reader(string file_name){
     
     fscanf(f,"%d %d %d %d %d %d",&n_row,&n_col,&n_vei,&n_rid,&n_bon,&n_step);
     
-    vec=malloc(n_rid*sizeof(int*));
+    vec=(int**)malloc(n_rid*sizeof(int*));
     for(int i=0;i<n_rid;i++){
-        vec[i]=malloc(6*sizeof(int));
+        vec[i]=(int*)malloc(6*sizeof(int));
         fscanf(f,"%d %d %d %d %d %d",&vec[i][0],&vec[i][1],&vec[i][2],&vec[i][3],&vec[i][4],&vec[i][5]);
     }
     
@@ -23,9 +23,20 @@ Reader::Reader(string file_name){
     mMap.steps=n_step;
     
     for(int i=0;i<n_rid;i++){
-        for(int j=0;j<6;j++){
-            mRides.push_back(vec[i][j]);
-        }
+
+        Dependencies.Ride tmp=(Ride*)malloc(sizeof(Dependencies.Ride));
+        tmp.id=i;
+        Dependencies.Point tmp_start=(Point*)malloc(sizeof(Dependencies.Point));
+        Dependencies.Point tmp_end=(Point*)malloc(sizeof(Dependencies.Point));
+        tmp_start.x=vec[i][0];
+        tmp_start.y=vec[i][1];
+        tmp.start=tmp_start;
+        tmp_end.x=vec[i][2];
+        tmp_end.y=vec[i][3];
+        tmp.end=tmp_end;
+        tmp.st_t=vec[i][4];
+        tmp.end_t=vec[i][5];
+        mRides.push_back(tmp);    
     }
     
 }
