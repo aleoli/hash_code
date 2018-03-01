@@ -1,6 +1,12 @@
 #include "veicolo.hpp"
 using hs::Veicolo;
 
+#include "direction.hpp"
+using hs::Direction;
+
+#include "map.hpp"
+using hs::_Map;
+
 Veicolo::Veicolo(int id, _Map *map) {
 	this->id = id;
 	this->map = map;
@@ -23,9 +29,9 @@ bool Veicolo::is_free() const {
 	return this->_is_free;
 }
 
-void Veicolo::next_step(int larg, int alt) {
-	if(!this->is_free && this->current_ride.id >= 0) {
-		Direction *dir = new Direction(this->position, this->current_ride.end, this->map->get_points(this->position), this->map.get_l(), this->map.get_a());
+void Veicolo::next_step() {
+	if(!this->_is_free && this->current_ride.id >= 0) {
+		Direction *dir = new Direction(this->position, this->current_ride.end, this->map->get_points(this->position), this->map->get_l(), this->map->get_a());
 		Direzione d = dir->GetDirection();
 		this->move(d);
 	}
@@ -61,7 +67,7 @@ void Veicolo::move(Direzione d) {
 void Veicolo::ride_finished() {
 	this->completed_rides.push_back(this->current_ride.id);
 	this->current_ride.id = -1;
-	this->is_free = true;
+	this->_is_free = true;
 }
 
 Point Veicolo::get_position() const {
@@ -70,5 +76,5 @@ Point Veicolo::get_position() const {
 
 void Veicolo::set_ride(Ride ride) {
 	this->current_ride = ride;
-	this->is_free = false;
+	this->_is_free = false;
 }

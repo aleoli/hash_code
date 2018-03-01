@@ -20,7 +20,7 @@ namespace hs {
     private:
     Direzione mDir;
     public:
-    Direction(Point,Point,vector<Point>,int l,int h)
+    Direction(Point,Point,vector<Point>,int l,int h);
     Direzione GetDirection();
 	};
 	

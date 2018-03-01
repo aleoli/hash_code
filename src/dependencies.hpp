@@ -40,6 +40,7 @@ namespace hs {
     class Veicolo;
     class _Map;
     class Reader;
+    class Direction;
     
 }
 

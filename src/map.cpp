@@ -20,7 +20,7 @@ vector<Point> _Map::get_points(Point exclude) {
 	for(auto it=this->veicoli.begin(); it!=this->veicoli.end(); ++it) {
 		Point pos = (*it)->get_position();
 		if(pos.x == exclude.x && pos.y == exclude.y) {} else {
-			points.push_back();
+			points.push_back(pos);
 		}
 	}
 	return points;
@@ -86,7 +86,7 @@ Ride _Map::get_ride(int id) {
 int _Map::get_best(Point position) {
 	vector<Ride> pending = this->get_pending_rides();
 	Ride best;
-	best.id;
+	best.id = -1;
 	int min_start = 100000;
 	for(auto it=pending.begin(); it!=pending.end(); ++it) {
 		if(it->start.x == position.x && it->start.y == position.y && it->st_t < min_start) {
