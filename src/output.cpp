@@ -8,7 +8,7 @@ Output::Output(vector<Veicolo*> vei){
     f=fopen("output.txt","w");
     
     for(auto it=vei.begin(); it!=vei.end(); ++it){
-        fprintf(f,"%d ",&((*it)->getId()));
+        fprintf(f,"%d ",(*it)->getId());
         for(auto it1=(*it)->get_completed_rides().begin(); it1!=(*it)->get_completed_rides().end(); ++it1){
             fprintf(f,"%d ",*it1);
         }

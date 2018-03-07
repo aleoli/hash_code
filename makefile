@@ -1,4 +1,4 @@
-OBJECTS = bin/main.o bin/hs.o bin/dependencies.o bin/veicolo.o bin/map.o bin/reader.o bin/direction.o bin/output.o
+OBJECTS = bin/main.o bin/hs.o bin/dependencies.o bin/veicolo.o bin/map.o bin/reader.o bin/direction.o bin/output.o bin/a_st.o
 
 CPPFLAGS = 
 LDLIBS = 

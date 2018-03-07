@@ -17,14 +17,17 @@ using hs::Ride;
 
 namespace hs {
 	
-	class Reader{
-    private:
-    MapConfig mMap;
-    vector<Ride> mRides;
-    public:
-    Reader(string);
+	class Reader {
+	
+	public:
+		Reader(string);
     MapConfig GetMap();
     vector<Ride> GetRides();
+		
+  private:
+    MapConfig mMap;
+    vector<Ride> mRides;
+    
 	};
 	
 }

@@ -29,6 +29,7 @@ namespace hs {
 		_Map *map;
 		vector<int> completed_rides;
 		Point position;
+		bool effective_ride;
 		Ride current_ride;
 		bool _is_free;
 	

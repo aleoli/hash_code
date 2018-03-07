@@ -37,11 +37,14 @@ namespace hs {
     	UP, DOWN, LEFT, RIGHT, NONE
     } Direzione;
     
+    typedef vector<Point> Path;
+    
     class Output;
     class Veicolo;
     class _Map;
     class Reader;
     class Direction;
+    class A_st;
     
 }
 

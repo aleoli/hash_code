@@ -1,5 +1,5 @@
-#ifndef direction_hpp
-#define direction_hpp
+#ifndef output_hpp
+#define output_hpp
 
 #include "dependencies.hpp"
 #include "veicolo.hpp"

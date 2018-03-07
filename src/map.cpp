@@ -1,6 +1,9 @@
 #include "map.hpp"
 using hs::_Map;
 
+#include "a_st.hpp"
+using hs::A_st;
+
 _Map::_Map(MapConfig conf, vector<Ride> rides) {
 	this->conf = conf;
 	this->rides = rides;
@@ -8,12 +11,18 @@ _Map::_Map(MapConfig conf, vector<Ride> rides) {
 	for(int a=0; a<this->conf.n_v; a++) {
 		Ride ride = this->get_ride(this->get_first());
 		if(ride.id >= 0) {
-			this->veicoli.push_back(new Veicolo(a, this));
-		} else {
+			cout << a << " -> id: " << ride.id << ", x: " << ride.end.x << ", y: " << ride.end.y << endl;
 			this->veicoli.push_back(new Veicolo(a, ride, this));
+		} else {
+			cout << a << " -> creating with no ride" << endl;
+			this->veicoli.push_back(new Veicolo(a, this));
 		}
 	}
 	this->next_step();
+}
+
+vector<Veicolo *> _Map::get_cars() const {
+	return this->veicoli;
 }
 
 vector<Point> _Map::get_points(Point exclude) {
@@ -37,12 +46,17 @@ int _Map::get_a() const {
 
 void _Map::next_step() {
 	this->step++;
+	cout << endl << "Step " << this->step << endl;
 	if(step == this->conf.steps)
 		return;
 	for(auto it=this->veicoli.begin(); it!=this->veicoli.end(); ++it) {
 		if((*it)->is_free()) {
-			Ride ride = this->get_ride(this->get_best((*it)->get_position()));
+			int best_id = this->get_best((*it)->get_position());
+			cout << best_id << endl;
+			Ride ride = this->get_ride(best_id);
 			if(ride.id >= 0) {
+				cout << (*it)->getId() << " -> id: " << ride.id << ", x: " << ride.end.x << ", y: " << ride.end.y << endl;
+				cout << "setting to veicolo " << (*it)->getId() << endl;
 				(*it)->set_ride(ride);
 			}
 		}
@@ -82,18 +96,24 @@ Ride _Map::get_ride(int id) {
 			return res;
 		}
 	}
+	Ride r;
+	return r;
 }
 
 int _Map::get_best(Point position) {
-	vector<Ride> pending = this->get_pending_rides();
+	vector<Ride> pending = this->rides; //this->get_pending_rides();
 	Ride best;
 	best.id = -1;
-	int min_start = 100000;
+	unsigned int best_val = 100000;
 	for(auto it=pending.begin(); it!=pending.end(); ++it) {
-		if(it->start.x == position.x && it->start.y == position.y && it->st_t < min_start) {
-			min_start = it->st_t;
-			best = (*it);
+		cout << "ride starts on " << it->start.x << " " << it->start.y << "\tends on " << it->end.x << " " << it->end.y << endl;
+		A_st *perc = new A_st(position, it->start, Path(), this->get_a(), this->get_l());
+		Path path = perc->get_path();
+		if((it->st_t+path.size()) < best_val) {
+			best_val = it->st_t+path.size();
+			best.id = it->id;
 		}
+		delete perc;
 	}
 	return best.id;
 }

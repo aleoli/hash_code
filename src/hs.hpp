@@ -6,5 +6,6 @@
 #include "reader.hpp"
 #include "direction.hpp"
 #include "output.hpp"
+#include "a_st.hpp"
 
 #endif

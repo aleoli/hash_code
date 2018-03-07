@@ -16,12 +16,18 @@ using hs::Direzione;
 
 namespace hs {
 	
-	class Direction{
-    private:
-    Direzione mDir;
-    public:
+	class Direction {
+	
+	public:
     Direction(Point,Point,vector<Point>,int l,int h);
     Direzione GetDirection();
+    
+   private:
+    Direzione mDir;
+    Point start;
+    Point end;
+    vector<Point> occ;
+    int h, l;
 	};
 	
 }

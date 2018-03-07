@@ -14,12 +14,17 @@ int main(int argc, char *argv[]) {
     
     if(argc < 2) {
     	cout << "Mancano gli argomenti" << endl;
+    	exit(1);
     }
     
     Reader *reader = new Reader(string(argv[1]));
     _Map *map = new _Map(reader->GetMap(), reader->GetRides());
     
     Output *output = new Output(map->get_cars());
+    
+    delete output;
+    delete map;
+    delete reader;
     
     return 0;
 }
