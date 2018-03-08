@@ -13,7 +13,7 @@ A_st::A_st(Point start, Point end, vector<Point> occ, int h, int l) {
 	this->position.dist = this->get_dist(this->position.p, end);
 	this->open.push_back(this->position);
 	this->found = false;
-	cout << "Path from (x: " << start.x << ", y: " << start.y << ") to (x: " << end.x << ", y: " << end.y << ")" << endl;
+	//cout << "Path from (x: " << start.x << ", y: " << start.y << ") to (x: " << end.x << ", y: " << end.y << ")" << endl;
 	int a = 0;
 	while(!(this->position.p.x == end.x && this->position.p.y == end.y)) {
 		this->add_nodes();
@@ -21,7 +21,7 @@ A_st::A_st(Point start, Point end, vector<Point> occ, int h, int l) {
 			// nessun percorso possibile
 			break;
 		}
-		cout << "x: " << this->position.p.x << ", y: " << this->position.p.y << endl;
+		//cout << "x: " << this->position.p.x << ", y: " << this->position.p.y << endl;
 		if(this->position.p.x != start.x || this->position.p.y != start.y) {
 			this->path.push_back(this->position.p);
 		}

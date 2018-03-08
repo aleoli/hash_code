@@ -17,10 +17,12 @@ using hs::Direzione;
 
 namespace hs {
 	
-	class Output{
-    public:
+	class Output {
+	
+  public:
     Output(vector<Veicolo*>);
-    };
+    
+  };
 	
 }
 

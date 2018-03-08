@@ -32,21 +32,24 @@ bool Veicolo::is_free() const {
 }
 
 void Veicolo::next_step() {
-	if(!this->_is_free && this->current_ride.id >= 0 && this->current_ride.start.x >= 0 && this->current_ride.start.x < this->map->get_l() && this->current_ride.end.x >= 0 && this->current_ride.end.x < this->map->get_l() && this->current_ride.start.y >= 0 && this->current_ride.start.y < this->map->get_a() && this->current_ride.end.y >= 0 && this->current_ride.end.y < this->map->get_a()) {
+	if(!this->_is_free && this->current_ride.id >= 0) {
 		if(this->effective_ride) {
-			cout << "Veicolo " << this->id << ": pos(x: " << this->position.x << ", y: " << this->position.y << ")" << "\tdestination: (x: " << this->current_ride.end.x << ", y: " << this->current_ride.end.y << ")" << endl;
+			//cout << "Veicolo " << this->id << ": pos(x: " << this->position.x << ", y: " << this->position.y << ")" << "\tdestination: (x: " << this->current_ride.end.x << ", y: " << this->current_ride.end.y << ")" << endl;
 			Direction *dir = new Direction(this->position, this->current_ride.end, this->map->get_points(this->position), this->map->get_l(), this->map->get_a());
 			Direzione d = dir->GetDirection();
 			this->move(d);
 			delete dir;
 		} else {
-			cout << "Veicolo " << this->id << ": pos(x: " << this->position.x << ", y: " << this->position.y << ")" << "\tdestination: (x: " << this->current_ride.start.x << ", y: " << this->current_ride.start.y << ")" << endl;
-			Direction *dir = new Direction(this->position, this->current_ride.start, this->map->get_points(this->position), this->map->get_l(), this->map->get_a());
+			//cout << "Veicolo " << this->id << ": pos(x: " << this->position.x << ", y: " << this->position.y << ")" << "\tdestination: (x: " << this->current_ride.start.x << ", y: " << this->current_ride.start.y << ")" << endl;
+			//cout << "moving to next ride" << endl;
+			Direction *dir = new Direction(this->position, this->current_ride.start, /*this->map->get_points(this->position)*/ Path(), this->map->get_l(), this->map->get_a());
 			Direzione d = dir->GetDirection();
 			this->move(d);
 			delete dir;
 		}
-	}
+	}/* else {
+		cout << (this->_is_free ? "free" : "not free") << "\tid: " << this->current_ride.id << "\tstart(x: " << this->current_ride.start.x << ", y: " << this->current_ride.start.y << ")" << "\tend(x: " << this->current_ride.end.x << ", y: " << this->current_ride.end.y << ")" << "\tmap(l: " << this->map->get_l() << ", a: " << this->map->get_a() << ")" << endl;
+	}*/
 }
 
 vector<int> Veicolo::get_completed_rides() const {
@@ -56,19 +59,19 @@ vector<int> Veicolo::get_completed_rides() const {
 void Veicolo::move(Direzione d) {
 	switch(d) {
 	case UP:
-		cout << "moving up" << endl;
+		//cout << "moving up" << endl;
 		this->position.y++;
 		break;
 	case DOWN:
-		cout << "moving down" << endl;
+		//cout << "moving down" << endl;
 		this->position.y--;
 		break;
 	case LEFT:
-		cout << "moving left" << endl;
+		//cout << "moving left" << endl;
 		this->position.x--;
 		break;
 	case RIGHT:
-		cout << "moving right" << endl;
+		//cout << "moving right" << endl;
 		this->position.x++;
 		break;
 	default:
@@ -99,8 +102,9 @@ Point Veicolo::get_position() const {
 }
 
 void Veicolo::set_ride(Ride ride) {
+	cout << "setting ride " << ride.id << endl;
 	this->current_ride = ride;
 	this->effective_ride = (ride.start.x == this->position.x && ride.start.y == this->position.y);
-	cout << endl << "veicolo " << this->getId() << " starting ride to " << ride.start.x << " " << ride.start.y << endl << endl;
+	//cout << endl << "veicolo " << this->getId() << " starting ride to " << ride.start.x << " " << ride.start.y << endl << endl;
 	this->_is_free = false;
 }

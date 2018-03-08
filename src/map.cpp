@@ -11,10 +11,10 @@ _Map::_Map(MapConfig conf, vector<Ride> rides) {
 	for(int a=0; a<this->conf.n_v; a++) {
 		Ride ride = this->get_ride(this->get_first());
 		if(ride.id >= 0) {
-			cout << a << " -> id: " << ride.id << ", x: " << ride.end.x << ", y: " << ride.end.y << endl;
+			//cout << a << " -> id: " << ride.id << ", x: " << ride.end.x << ", y: " << ride.end.y << endl;
 			this->veicoli.push_back(new Veicolo(a, ride, this));
 		} else {
-			cout << a << " -> creating with no ride" << endl;
+			//cout << a << " -> creating with no ride" << endl;
 			this->veicoli.push_back(new Veicolo(a, this));
 		}
 	}
@@ -46,17 +46,18 @@ int _Map::get_a() const {
 
 void _Map::next_step() {
 	this->step++;
-	cout << endl << "Step " << this->step << endl;
+	cout << endl << endl << "Step " << this->step << endl;
 	if(step == this->conf.steps)
 		return;
 	for(auto it=this->veicoli.begin(); it!=this->veicoli.end(); ++it) {
+		cout << endl << "veicolo " << (*it)->getId() << ": (x: " << (*it)->get_position().x << ", y: " << (*it)->get_position().y << ")" << endl;
 		if((*it)->is_free()) {
 			int best_id = this->get_best((*it)->get_position());
-			cout << best_id << endl;
+			//cout << best_id << endl;
 			Ride ride = this->get_ride(best_id);
 			if(ride.id >= 0) {
-				cout << (*it)->getId() << " -> id: " << ride.id << ", x: " << ride.end.x << ", y: " << ride.end.y << endl;
-				cout << "setting to veicolo " << (*it)->getId() << endl;
+				//cout << (*it)->getId() << " -> id: " << ride.id << ", x: " << ride.end.x << ", y: " << ride.end.y << endl;
+				//cout << "setting to veicolo " << (*it)->getId() << endl;
 				(*it)->set_ride(ride);
 			}
 		}
@@ -97,6 +98,7 @@ Ride _Map::get_ride(int id) {
 		}
 	}
 	Ride r;
+	r.id = -1;
 	return r;
 }
 
@@ -106,7 +108,7 @@ int _Map::get_best(Point position) {
 	best.id = -1;
 	unsigned int best_val = 100000;
 	for(auto it=pending.begin(); it!=pending.end(); ++it) {
-		cout << "ride starts on " << it->start.x << " " << it->start.y << "\tends on " << it->end.x << " " << it->end.y << endl;
+		//cout << "ride starts on " << it->start.x << " " << it->start.y << "\tends on " << it->end.x << " " << it->end.y << endl;
 		A_st *perc = new A_st(position, it->start, Path(), this->get_a(), this->get_l());
 		Path path = perc->get_path();
 		if((it->st_t+path.size()) < best_val) {
